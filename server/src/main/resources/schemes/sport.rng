@@ -1,0 +1,12 @@
+<element name="Sports" ns="https://interoperabilnost.hr/sport" xmlns="http://relaxng.org/ns/structure/1.0">
+    <oneOrMore>
+        <element name="Sport">
+            <element name="name">
+                <text/>
+            </element>
+            <element name="slug">
+                <text/>
+            </element>
+        </element>
+    </oneOrMore>
+</element>

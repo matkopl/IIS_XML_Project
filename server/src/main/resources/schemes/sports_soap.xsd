@@ -1,0 +1,28 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="https://interoperabilnost.hr/sport"
+           xmlns="https://interoperabilnost.hr/sport"
+           elementFormDefault="qualified">
+
+    <xs:element name="SearchRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="term" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="SearchResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Sport" type="SportType" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="SportType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="slug" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
