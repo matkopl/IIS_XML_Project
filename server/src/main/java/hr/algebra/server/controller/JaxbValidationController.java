@@ -30,9 +30,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class JaxbValidationController {
 
-    private final OddsApiService oddsApiService;
-
-    @GetMapping("/validate")
+    @GetMapping
     public List<String> validateSportsXml() {
         List<String> errors = new ArrayList<>();
         try {

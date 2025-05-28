@@ -1,7 +1,6 @@
 package hr.algebra.server.soap;
 
 
-import hr.algebra.server.factory.ObjectFactory;
 import hr.algebra.server.model.SportType;
 import hr.algebra.server.service.OddsApiService;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
@@ -25,7 +24,6 @@ import static org.apache.catalina.manager.JspHelper.escapeXml;
 public class SportSoapEndpoint {
     private static final String NAMESPACE_URI = "https://interoperabilnost.hr/sport";
     private final OddsApiService oddsApiService;
-    private final ObjectFactory objectFactory = new ObjectFactory();
 
     public SportSoapEndpoint(OddsApiService oddsApiService) {
         this.oddsApiService = oddsApiService;
@@ -48,7 +46,7 @@ public class SportSoapEndpoint {
         String expression = "//*[local-name()='Sport'][contains(translate(*[local-name()='name'], 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '" + term + "')]";
         NodeList nodes = (NodeList) xpath.evaluate(expression, doc, XPathConstants.NODESET);
 
-        SearchResponse response = objectFactory.createSearchResponse();
+        SearchResponse response = new SearchResponse();
         for (int i = 0; i < nodes.getLength(); i++) {
             Element sportElem = (Element) nodes.item(i);
             Element nameElem = (Element) sportElem.getElementsByTagNameNS(NAMESPACE_URI, "name").item(0);
@@ -59,7 +57,7 @@ public class SportSoapEndpoint {
 
             if (name.isBlank() || slug.isBlank()) continue;
 
-            SportType sport = objectFactory.createSportType();
+            SportType sport = new SportType();
             sport.setName(name);
             sport.setSlug(slug);
 

@@ -1,0 +1,10 @@
+<Sports xmlns="https://interoperabilnost.hr/sport">
+    <Sport>
+        <name>Soccer</name>
+        <slug>soccer</slug>
+    </Sport>
+    <Sport>
+        <name>Basketball</name>
+        <slug>basketball</slug>
+    </Sport>
+</Sports>

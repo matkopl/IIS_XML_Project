@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Sports xmlns="https://interoperabilnost.hr/sport">
+    <Sport>
+        <name>Softball</name>
+        <slug>softball</slug>
+    </Sport>
+    <Sport>
+        <name>Squash</name>
+        <slug>squash</slug>
+    </Sport>
+    <Sport>
+        <name>StarCraft</name>
+        <slug>esport-starcraft</slug>
+    </Sport>
+    <Sport>
+        <name>Table Tennis</name>
+        <slug>table-tennis</slug>
+    </Sport>
+    <Sport>
+        <name>Tennis</name>
+        <slug>tennis</slug>
+    </Sport>
+    <Sport>
+        <name>Valorant</name>
+        <slug>esport-valorant</slug>
+    </Sport>
+    <Sport>
+        <name>Volleyball</name>
+        <slug>volleyball</slug>
+    </Sport>
+    <Sport>
+        <name>Waterpolo</name>
+        <slug>waterpolo</slug>
+    </Sport>
+    <Sport>
+        <name>eBasketball</name>
+        <slug>ebasketball</slug>
+    </Sport>
+    <Sport>
+        <name>eSoccer</name>
+        <slug>esoccer</slug>
+    </Sport>
+    <Sport>
+        <name>Beach Soccer</name>
+        <slug>beach-soccer</slug>
+    </Sport>
+    <Sport>
+        <name>Beach Volley</name>
+        <slug>beach-volley</slug>
+    </Sport>
+    <Sport>
+        <name>Bowls</name>
+        <slug>bowls</slug>
+    </Sport>
+    <Sport>
+        <name>Boxing</name>
+        <slug>boxing</slug>
+    </Sport>
+    <Sport>
+        <name>Call of Duty</name>
+        <slug>esport-call-of-duty</slug>
+    </Sport>
+    <Sport>
+        <name>Counter Strike</name>
+        <slug>esport-counter-strike</slug>
+    </Sport>
+    <Sport>
+        <name>Cricket</name>
+        <slug>cricket</slug>
+    </Sport>
+    <Sport>
+        <name>Cross-Country</name>
+        <slug>cross-country</slug>
+    </Sport>
+    <Sport>
+        <name>Curling</name>
+        <slug>curling</slug>
+    </Sport>
+    <Sport>
+        <name>Darts</name>
+        <slug>darts</slug>
+    </Sport>
+    <Sport>
+        <name>American Football</name>
+        <slug>american-football</slug>
+    </Sport>
+    <Sport>
+        <name>Arena of Valor</name>
+        <slug>esport-arena-of-valor</slug>
+    </Sport>
+    <Sport>
+        <name>Athletics</name>
+        <slug>athletics</slug>
+    </Sport>
+    <Sport>
+        <name>Aussie Rules</name>
+        <slug>aussie-rules</slug>
+    </Sport>
+    <Sport>
+        <name>Badminton</name>
+        <slug>badminton</slug>
+    </Sport>
+    <Sport>
+        <name>Bandy</name>
+        <slug>bandy</slug>
+    </Sport>
+    <Sport>
+        <name>Baseball</name>
+        <slug>baseball</slug>
+    </Sport>
+    <Sport>
+        <name>Basketball</name>
+        <slug>basketball</slug>
+    </Sport>
+    <Sport>
+        <name>Basketball 3x3</name>
+        <slug>basketball-3x3</slug>
+    </Sport>
+    <Sport>
+        <name>Beach Handball</name>
+        <slug>beach-handball</slug>
+    </Sport>
+    <Sport>
+        <name>Dota</name>
+        <slug>esport-dota</slug>
+    </Sport>
+    <Sport>
+        <name>Field Hockey</name>
+        <slug>field-hockey</slug>
+    </Sport>
+    <Sport>
+        <name>Floorball</name>
+        <slug>floorball</slug>
+    </Sport>
+    <Sport>
+        <name>Futsal</name>
+        <slug>futsal</slug>
+    </Sport>
+    <Sport>
+        <name>Gaelic Football</name>
+        <slug>gaelic-football</slug>
+    </Sport>
+    <Sport>
+        <name>Gaelic Hurling</name>
+        <slug>gaelic-hurling</slug>
+    </Sport>
+    <Sport>
+        <name>Handball</name>
+        <slug>handball</slug>
+    </Sport>
+    <Sport>
+        <name>Ice Hockey</name>
+        <slug>ice-hockey</slug>
+    </Sport>
+    <Sport>
+        <name>Kabaddi</name>
+        <slug>kabaddi</slug>
+    </Sport>
+    <Sport>
+        <name>King of Glory</name>
+        <slug>esport-king-of-glory</slug>
+    </Sport>
+    <Sport>
+        <name>Lacrosse</name>
+        <slug>lacrosse</slug>
+    </Sport>
+    <Sport>
+        <name>LoL</name>
+        <slug>esport-league-of-legends</slug>
+    </Sport>
+    <Sport>
+        <name>MMA</name>
+        <slug>mma</slug>
+    </Sport>
+    <Sport>
+        <name>Netball</name>
+        <slug>netball</slug>
+    </Sport>
+    <Sport>
+        <name>Overwatch</name>
+        <slug>esport-overwatch</slug>
+    </Sport>
+    <Sport>
+        <name>Padel</name>
+        <slug>padel</slug>
+    </Sport>
+    <Sport>
+        <name>Pesapallo</name>
+        <slug>pesapallo</slug>
+    </Sport>
+    <Sport>
+        <name>Rainbow Six</name>
+        <slug>esport-rainbow-six</slug>
+    </Sport>
+    <Sport>
+        <name>Rink Hockey</name>
+        <slug>rink-hockey</slug>
+    </Sport>
+    <Sport>
+        <name>Rocket League</name>
+        <slug>esport-rocket-league</slug>
+    </Sport>
+    <Sport>
+        <name>Rugby</name>
+        <slug>rugby</slug>
+    </Sport>
+    <Sport>
+        <name>Snooker</name>
+        <slug>snooker</slug>
+    </Sport>
+    <Sport>
+        <name>Soccer</name>
+        <slug>soccer</slug>
+    </Sport>
+    <Sport>
+        <name>Soccer Specials</name>
+        <slug>soccer-specials</slug>
+    </Sport>
+</Sports>

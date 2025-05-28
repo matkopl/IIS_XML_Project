@@ -15,5 +15,4 @@ public class Sports {
     private List<SportType> sport = new ArrayList<>();
     public Sports() {}
     public List<SportType> getSport() { return sport; }
-    public void setSport(List<SportType> sport) { this.sport = sport; }
 }

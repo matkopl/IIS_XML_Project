@@ -22,14 +22,11 @@ import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 @RestController
-@RequestMapping("/api/sport")
+@RequestMapping("/api")
 public class XsdRngController {
 
     @PostMapping(value = "/xsd", consumes = "application/xml")
