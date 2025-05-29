@@ -1,6 +1,7 @@
 package hr.algebra.client.controller;
 
 import hr.algebra.client.service.SoapService;
+import hr.algebra.client.service.XmlRpcService;
 import hr.algebra.client.util.XmlUtils;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -19,6 +20,8 @@ import java.net.http.HttpResponse;
 public class MainController {
     private final SoapService soapService = new SoapService();
     private final XmlUtils xmlUtils = new XmlUtils();
+    private final XmlRpcService xmlRpcService = new XmlRpcService();
+
     private String accessToken;
     private String refreshToken;
     private String accessTokenExpiry;
@@ -30,10 +33,10 @@ public class MainController {
     private AnchorPane crudPane, soapPane, jaxbPane, xmlRpcPane, validationPane;
 
     @FXML
-    private TextArea xsdInputArea, xsdResultArea, xsdSchemaArea, rngInputArea, rngResultArea, rngSchemaArea, soapResultArea;
+    private TextArea xsdInputArea, xsdResultArea, xsdSchemaArea, rngInputArea, rngResultArea, rngSchemaArea, soapResultArea, xmlRpcResultArea;
 
     @FXML
-    private TextField soapTermField;
+    private TextField soapTermField, xmlRpcCityField;
 
     public void initialize() {
         crudTab.setDisable(true);
@@ -138,6 +141,21 @@ public class MainController {
                     Platform.runLater(() -> soapResultArea.setText("Greška: " + ex.getMessage()));
                     return null;
                 });
+    }
+
+    @FXML
+    public void onXmlRpcSearch() {
+        String city = xmlRpcCityField.getText();
+        if (city == null || city.isBlank()) {
+            xmlRpcResultArea.setText("Unesite naziv grada za pretragu.");
+            return;
+        }
+
+        xmlRpcResultArea.setText("Pretražujem...");
+        new Thread(() -> {
+            String result = xmlRpcService.getTemperatures(city);
+            Platform.runLater(() -> xmlRpcResultArea.setText(result));
+        }).start();
     }
 
 }

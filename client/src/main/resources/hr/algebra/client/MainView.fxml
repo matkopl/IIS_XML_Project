@@ -38,7 +38,10 @@
             <Tab text="XML-RPC" fx:id="xmlrpcTab">
                 <AnchorPane fx:id="xmlrpcPane">
                     <children>
-                        <Label text="Ovdje će biti XML-RPC funkcionalnost" layoutX="20" layoutY="20"/>
+                        <Label text="Unesi grad ili dio naziva:" layoutX="20" layoutY="20"/>
+                        <TextField fx:id="xmlRpcCityField" layoutX="20" layoutY="50" prefWidth="200"/>
+                        <Button text="Dohvati temperaturu" layoutX="240" layoutY="50" onAction="#onXmlRpcSearch"/>
+                        <TextArea fx:id="xmlRpcResultArea" layoutX="20" layoutY="100" prefWidth="800" prefHeight="250" editable="false"/>
                     </children>
                 </AnchorPane>
             </Tab>
