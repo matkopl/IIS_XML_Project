@@ -1,0 +1,34 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:ns="https://interoperabilnost.hr/sport"
+           targetNamespace="https://interoperabilnost.hr/sport"
+           elementFormDefault="qualified">
+
+    <xs:element name="Sports">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Sport" type="ns:SportType" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+        <xs:unique name="uniqueName">
+            <xs:selector xpath="ns:Sport"/>
+            <xs:field xpath="ns:name"/>
+        </xs:unique>
+        <xs:unique name="uniqueSlug">
+            <xs:selector xpath="ns:Sport"/>
+            <xs:field xpath="ns:slug"/>
+        </xs:unique>
+    </xs:element>
+
+    <xs:complexType name="SportType">
+        <xs:sequence>
+            <xs:element name="name" type="ns:nonEmptyString"/>
+            <xs:element name="slug" type="ns:nonEmptyString"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="nonEmptyString">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
