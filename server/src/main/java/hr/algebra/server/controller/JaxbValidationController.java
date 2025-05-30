@@ -10,6 +10,8 @@ import jakarta.xml.bind.Unmarshaller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +21,7 @@ import javax.xml.XMLConstants;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
@@ -52,5 +55,17 @@ public class JaxbValidationController {
             errors.add("Greška: " + e.getMessage());
         }
         return errors.isEmpty() ? List.of("XML je validan prema XSD shemi") : errors;
+    }
+
+    @GetMapping(value = "/file", produces = MediaType.APPLICATION_XML_VALUE)
+    public ResponseEntity<String> getSportsXmlFile() {
+        try {
+            ClassPathResource resource = new ClassPathResource("schemes/xml/sports.xml");
+            byte[] bytes = resource.getInputStream().readAllBytes();
+            String xml = new String(bytes);
+            return ResponseEntity.ok(xml);
+        } catch (IOException e) {
+            return ResponseEntity.status(500).body("<error>Greška pri čitanju XML datoteke: " + e.getMessage() + "</error>");
+        }
     }
 }

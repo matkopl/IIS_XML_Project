@@ -5,22 +5,21 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Component;
 
-import javax.crypto.SecretKey;
 import java.util.Date;
 
 @Component
 public class JwtUtil {
-    private final SecretKey ACCESS_SECRET = Keys.secretKeyFor(SignatureAlgorithm.HS512);
-    private final SecretKey REFRESH_SECRET = Keys.secretKeyFor(SignatureAlgorithm.HS512);
-    private final long ACCESS_EXPIRATION = 1000 * 60 * 10; // 15 min
-    private final long REFRESH_EXPIRATION = 1000 * 60 * 60 * 24; //24h
+    private final String ACCESS_SECRET = "12345678901234567890_access_secret";
+    private final String REFRESH_SECRET = "12345678901234567890_refresh_secret";
+    private final long ACCESS_EXPIRATION = 1000 * 30; // 30 sek
+    private final long REFRESH_EXPIRATION = 1000 * 60 * 10; // 10 min
 
     public String generateAccessToken(String username) {
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + ACCESS_EXPIRATION))
-                .signWith(ACCESS_SECRET)
+                .signWith(Keys.hmacShaKeyFor(ACCESS_SECRET.getBytes()), SignatureAlgorithm.HS256)
                 .compact();
     }
 
@@ -29,13 +28,13 @@ public class JwtUtil {
                 .setSubject(username)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + REFRESH_EXPIRATION))
-                .signWith(REFRESH_SECRET)
+                .signWith(Keys.hmacShaKeyFor(REFRESH_SECRET.getBytes()), SignatureAlgorithm.HS256)
                 .compact();
     }
 
     public String extractUsernameFromAccessToken(String token) {
         return Jwts.parser()
-                .setSigningKey(ACCESS_SECRET)
+                .setSigningKey(Keys.hmacShaKeyFor(ACCESS_SECRET.getBytes()))
                 .parseClaimsJws(token)
                 .getBody()
                 .getSubject();
@@ -43,7 +42,7 @@ public class JwtUtil {
 
     public String extractUsernameFromRefreshToken(String token) {
         return Jwts.parser()
-                .setSigningKey(REFRESH_SECRET)
+                .setSigningKey(Keys.hmacShaKeyFor(REFRESH_SECRET.getBytes()))
                 .parseClaimsJws(token)
                 .getBody()
                 .getSubject();
@@ -52,7 +51,7 @@ public class JwtUtil {
     public boolean validateAccessToken(String token) {
         try {
             Jwts.parser()
-                    .setSigningKey(ACCESS_SECRET)
+                    .setSigningKey(Keys.hmacShaKeyFor(ACCESS_SECRET.getBytes()))
                     .parseClaimsJws(token);
             return true;
         } catch (Exception e) {
@@ -63,7 +62,7 @@ public class JwtUtil {
     public boolean validateRefreshToken(String token) {
         try {
             Jwts.parser()
-                    .setSigningKey(REFRESH_SECRET)
+                    .setSigningKey(Keys.hmacShaKeyFor(REFRESH_SECRET.getBytes()))
                     .parseClaimsJws(token);
             return true;
         } catch (Exception e) {

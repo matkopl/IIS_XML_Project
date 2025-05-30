@@ -14,7 +14,7 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Repository
-public class SportRepository {
+public class SportService {
     private final Map<Long, SportType> sports = new HashMap<>();
     private final AtomicLong idGen = new AtomicLong();
 

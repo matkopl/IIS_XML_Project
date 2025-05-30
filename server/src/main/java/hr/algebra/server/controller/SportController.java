@@ -1,7 +1,7 @@
 package hr.algebra.server.controller;
 
 import hr.algebra.server.model.SportType;
-import hr.algebra.server.service.SportRepository;
+import hr.algebra.server.service.SportService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ import java.util.*;
 @RequiredArgsConstructor
 public class SportController {
 
-    private final SportRepository sportRepository;
+    private final SportService sportRepository;
 
     @GetMapping
     public List<Map<String, Object>> getAll() {
@@ -30,9 +30,15 @@ public class SportController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<SportType> getById(@PathVariable Long id) {
+    public ResponseEntity<Map<String, Object>> getById(@PathVariable Long id) {
         return sportRepository.findById(id)
-                .map(ResponseEntity::ok)
+                .map(sport -> {
+                    Map<String, Object> sportMap = new HashMap<>();
+                    sportMap.put("id", id);
+                    sportMap.put("name", sport.getName());
+                    sportMap.put("slug", sport.getSlug());
+                    return ResponseEntity.ok(sportMap);
+                })
                 .orElse(ResponseEntity.notFound().build());
     }
 

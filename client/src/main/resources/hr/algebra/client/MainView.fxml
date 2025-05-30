@@ -11,38 +11,15 @@
     </padding>
     <TabPane fx:id="mainTabPane" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-            <Tab text="CRUD" fx:id="crudTab">
-                <AnchorPane fx:id="crudPane">
-                    <children>
-                        <Label text="Ovdje će biti CRUD funkcionalnost" layoutX="20" layoutY="20"/>
-                    </children>
-                </AnchorPane>
-            </Tab>
-            <Tab text="SOAP" fx:id="soapTab">
-                <AnchorPane fx:id="soapPane">
-                    <children>
-                        <Label text="Pretraži sportove (SOAP):" layoutX="20" layoutY="20"/>
-                        <TextField fx:id="soapTermField" layoutX="20" layoutY="50" prefWidth="200"/>
-                        <Button text="Pretraži" layoutX="240" layoutY="50" onAction="#onSoapSearch"/>
-                        <TextArea fx:id="soapResultArea" layoutX="20" layoutY="100" prefWidth="800" prefHeight="250" editable="false"/>
-                    </children>
-                </AnchorPane>
-            </Tab>
-            <Tab text="JAXB" fx:id="jaxbTab">
-                <AnchorPane fx:id="jaxbPane">
-                    <children>
-                        <Label text="Ovdje će biti JAXB funkcionalnost" layoutX="20" layoutY="20"/>
-                    </children>
-                </AnchorPane>
-            </Tab>
-            <Tab text="XML-RPC" fx:id="xmlrpcTab">
-                <AnchorPane fx:id="xmlrpcPane">
-                    <children>
-                        <Label text="Unesi grad ili dio naziva:" layoutX="20" layoutY="20"/>
-                        <TextField fx:id="xmlRpcCityField" layoutX="20" layoutY="50" prefWidth="200"/>
-                        <Button text="Dohvati temperaturu" layoutX="240" layoutY="50" onAction="#onXmlRpcSearch"/>
-                        <TextArea fx:id="xmlRpcResultArea" layoutX="20" layoutY="100" prefWidth="800" prefHeight="250" editable="false"/>
-                    </children>
+            <Tab text="XSD Validacija" fx:id="xsdTab">
+                <AnchorPane fx:id="xsdPane">
+                    <Label text="Unesi XML za XSD validaciju:" layoutX="20" layoutY="20"/>
+                    <TextArea fx:id="xsdInputArea" layoutX="20" layoutY="50" prefWidth="400" prefHeight="150"/>
+                    <Button text="Validiraj" layoutX="440" layoutY="50" onAction="#onXsdValidate"/>
+                    <Label text="Rezultat:" layoutX="20" layoutY="210"/>
+                    <TextArea fx:id="xsdResultArea" layoutX="20" layoutY="240" prefWidth="500" prefHeight="100" editable="false"/>
+                    <Label text="XSD shema:" layoutX="540" layoutY="20"/>
+                    <TextArea fx:id="xsdSchemaArea" layoutX="540" layoutY="50" prefWidth="300" prefHeight="290" editable="false"/>
                 </AnchorPane>
             </Tab>
             <Tab text="RNG Validacija" fx:id="rngTab">
@@ -56,15 +33,56 @@
                     <TextArea fx:id="rngSchemaArea" layoutX="540" layoutY="50" prefWidth="300" prefHeight="290" editable="false"/>
                 </AnchorPane>
             </Tab>
-            <Tab text="XSD Validacija" fx:id="xsdTab">
-                <AnchorPane fx:id="xsdPane">
-                    <Label text="Unesi XML za XSD validaciju:" layoutX="20" layoutY="20"/>
-                    <TextArea fx:id="xsdInputArea" layoutX="20" layoutY="50" prefWidth="400" prefHeight="150"/>
-                    <Button text="Validiraj" layoutX="440" layoutY="50" onAction="#onXsdValidate"/>
-                    <Label text="Rezultat:" layoutX="20" layoutY="210"/>
-                    <TextArea fx:id="xsdResultArea" layoutX="20" layoutY="240" prefWidth="500" prefHeight="100" editable="false"/>
-                    <Label text="XSD shema:" layoutX="540" layoutY="20"/>
-                    <TextArea fx:id="xsdSchemaArea" layoutX="540" layoutY="50" prefWidth="300" prefHeight="290" editable="false"/>
+            <Tab text="SOAP" fx:id="soapTab">
+                <AnchorPane fx:id="soapPane">
+                    <children>
+                        <Label text="Pretraži sportove (SOAP):" layoutX="20" layoutY="20"/>
+                        <TextField fx:id="soapTermField" layoutX="20" layoutY="50" prefWidth="200"/>
+                        <Button text="Pretraži" layoutX="240" layoutY="50" onAction="#onSoapSearch"/>
+                        <TextArea fx:id="soapResultArea" layoutX="20" layoutY="100" prefWidth="800" prefHeight="250" editable="false"/>
+                    </children>
+                </AnchorPane>
+            </Tab>
+            <Tab text="JAXB" fx:id="jaxbTab" disable="true">
+                <AnchorPane fx:id="jaxbPane">
+                    <children>
+                        <Label text="JAXB validacija sports.xml prema XSD:" layoutX="20" layoutY="20"/>
+                        <Button text="Validiraj" layoutX="20" layoutY="50" onAction="#onJaxbValidateAndShowXml"/>
+                        <TextArea fx:id="jaxbResultArea" layoutX="20" layoutY="100" prefWidth="800" prefHeight="250" editable="false"/>
+                        <TextArea fx:id="jaxbXmlArea" layoutX="20" layoutY="210" prefWidth="800" prefHeight="250" editable="false"/>
+                    </children>
+                </AnchorPane>
+            </Tab>
+            <Tab text="XML-RPC" fx:id="xmlrpcTab">
+                <AnchorPane fx:id="xmlrpcPane">
+                    <children>
+                        <Label text="Unesi grad ili dio naziva:" layoutX="20" layoutY="20"/>
+                        <TextField fx:id="xmlRpcCityField" layoutX="20" layoutY="50" prefWidth="200"/>
+                        <Button text="Dohvati temperaturu" layoutX="240" layoutY="50" onAction="#onXmlRpcSearch"/>
+                        <TextArea fx:id="xmlRpcResultArea" layoutX="20" layoutY="100" prefWidth="800" prefHeight="250" editable="false"/>
+                    </children>
+                </AnchorPane>
+            </Tab>
+            <Tab text="CRUD" fx:id="crudTab" disable="true">
+                <AnchorPane fx:id="crudPane">
+                    <children>
+                        <TableView fx:id="crudTable" layoutX="20" layoutY="20" prefWidth="600" prefHeight="250">
+                            <columns>
+                                <TableColumn fx:id="idColumn" text="ID" prefWidth="60"/>
+                                <TableColumn fx:id="nameColumn" text="Naziv" prefWidth="200"/>
+                                <TableColumn fx:id="slugColumn" text="Slug" prefWidth="200"/>
+                            </columns>
+                        </TableView>
+                        <TextField fx:id="crudNameField" layoutX="20" layoutY="290" promptText="Naziv"/>
+                        <TextField fx:id="crudSlugField" layoutX="200" layoutY="290" promptText="Slug"/>
+                        <Button text="Dodaj" layoutX="400" layoutY="290" onAction="#onCrudAdd"/>
+                        <Button text="Ažuriraj" layoutX="470" layoutY="290" onAction="#onCrudUpdate"/>
+                        <Button text="Obriši" layoutX="560" layoutY="290" onAction="#onCrudDelete"/>
+                        <ComboBox fx:id="crudIdCombo" layoutX="650" layoutY="20" prefWidth="100"/>
+                        <Button text="Prikaži po ID-u" layoutX="760" layoutY="20" onAction="#onCrudShowById"/>
+                        <TextArea fx:id="crudIdResultArea" layoutX="650" layoutY="60" prefWidth="250" prefHeight="100" editable="false"/>
+                        <Label fx:id="crudStatusLabel" layoutX="20" layoutY="330"/>
+                    </children>
                 </AnchorPane>
             </Tab>
         </tabs>

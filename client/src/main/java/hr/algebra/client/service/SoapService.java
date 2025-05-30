@@ -8,8 +8,13 @@ import java.util.concurrent.CompletableFuture;
 
 public class SoapService {
     private static final String SOAP_ENDPOINT = "http://localhost:8080/ws";
+    private final AuthService authService;
 
-    public CompletableFuture<String> searchSoap(String term, String accessToken) {
+    public SoapService(AuthService authService) {
+        this.authService = authService;
+    }
+
+    public CompletableFuture<String> searchSoap(String term) {
         String soapRequest = """
         <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
                           xmlns:sport="https://interoperabilnost.hr/sport">
@@ -21,6 +26,8 @@ public class SoapService {
            </soapenv:Body>
         </soapenv:Envelope>
         """.formatted(term);
+
+        String accessToken = authService.getValidAccessToken();
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
