@@ -62,9 +62,7 @@ public class SportService {
         HttpResponse<String> response = null;
         try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
+        } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
         JSONObject o = new JSONObject(response.body());
@@ -88,10 +86,11 @@ public class SportService {
                 .build();
 
         try {
-            client.send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            if (response.statusCode() != 200) {
+                throw new RuntimeException(response.body());
+            }
+        } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
@@ -109,10 +108,11 @@ public class SportService {
                 .build();
 
         try {
-            client.send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            if (response.statusCode() != 200 && response.statusCode() != 204) {
+                throw new RuntimeException(response.body());
+            }
+        } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
     }

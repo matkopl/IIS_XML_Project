@@ -39,6 +39,7 @@ public class AuthController {
         if (jwtUtil.validateRefreshToken(refreshToken)) {
             String username = jwtUtil.extractUsernameFromRefreshToken(refreshToken);
             String newAccessToken = jwtUtil.generateAccessToken(username);
+            System.out.println("Refresh token pozvan za:" + username + " -> " + newAccessToken);
             return ResponseEntity.ok(new AuthResponse(newAccessToken, refreshToken));
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid refresh token");

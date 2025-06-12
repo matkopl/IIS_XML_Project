@@ -239,13 +239,17 @@ public class MainController {
         }
 
         new Thread(() -> {
-            sportService.add(name, slug);
-            Platform.runLater(() -> {
-                loadSports();
-                crudNameField.clear();
-                crudSlugField.clear();
-                crudStatusLabel.setText("Dodan " + name + ":"+ slug + " sport.");
-            });
+            try {
+                sportService.add(name, slug);
+                Platform.runLater(() -> {
+                    loadSports();
+                    crudNameField.clear();
+                    crudSlugField.clear();
+                    crudStatusLabel.setText("Dodan " + name + ":" + slug + " sport.");
+                });
+            } catch (Exception ex) {
+                Platform.runLater(() -> crudStatusLabel.setText(ex.getMessage()));
+            }
         }).start();
     }
 
@@ -264,13 +268,17 @@ public class MainController {
             crudStatusLabel.setText("Unesite naziv i slug.");
         }
         new Thread(() -> {
-            sportService.update(selectedSport.getId(), name, slug);
-            Platform.runLater(() -> {
-                crudNameField.clear();
-                crudSlugField.clear();
-                crudStatusLabel.setText("Updatean sport iz " + selectedSport.getName() + ":" + selectedSport.getSlug() + "u " + name + ":" + slug + ".");
-                loadSports();
-            });
+            try {
+                sportService.update(selectedSport.getId(), name, slug);
+                Platform.runLater(() -> {
+                    crudNameField.clear();
+                    crudSlugField.clear();
+                    crudStatusLabel.setText("Updatean sport iz " + selectedSport.getName() + ":" + selectedSport.getSlug() + " u " + name + ":" + slug + ".");
+                    loadSports();
+                });
+            } catch (Exception ex) {
+                Platform.runLater(() -> crudStatusLabel.setText(ex.getMessage()));
+            }
         }).start();
     }
 

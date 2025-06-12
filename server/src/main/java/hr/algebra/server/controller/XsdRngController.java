@@ -22,6 +22,7 @@ import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -128,6 +129,9 @@ public class XsdRngController {
     }
 
     private void saveXmlToFile(String xml, String filePath) throws IOException {
+        Path path = Path.of(filePath);
+        Files.createDirectories(path.getParent());
+
         Files.writeString(Path.of(filePath), xml, StandardCharsets.UTF_8);
     }
 }

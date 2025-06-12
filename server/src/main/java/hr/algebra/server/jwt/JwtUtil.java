@@ -11,7 +11,7 @@ import java.util.Date;
 public class JwtUtil {
     private final String ACCESS_SECRET = "12345678901234567890_access_secret";
     private final String REFRESH_SECRET = "12345678901234567890_refresh_secret";
-    private final long ACCESS_EXPIRATION = 1000 * 30; // 30 sek
+    private final long ACCESS_EXPIRATION = 1000 * 10; // 30 sek
     private final long REFRESH_EXPIRATION = 1000 * 60 * 10; // 10 min
 
     public String generateAccessToken(String username) {

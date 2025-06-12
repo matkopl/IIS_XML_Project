@@ -58,4 +58,16 @@ public class OddsApiService {
         Path file = dir.resolve("sports.xml");
         Files.writeString(file, xml, StandardCharsets.UTF_8);
     }
+
+    public String loadLocalSportsXmlIfExists() {
+        Path path = Path.of("server/src/main/resources/schemes/xml/sports.xml");
+        if (Files.exists(path)) {
+            try {
+                return Files.readString(path, StandardCharsets.UTF_8);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
 }

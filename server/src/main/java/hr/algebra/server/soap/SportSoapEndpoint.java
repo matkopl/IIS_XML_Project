@@ -34,9 +34,12 @@ public class SportSoapEndpoint {
     public SearchResponse search(@RequestPayload SearchRequest request) throws Exception {
         String term = request.getTerm().toLowerCase();
 
-        oddsApiService.saveSportsXmlToFile();
+        String xml = oddsApiService.loadLocalSportsXmlIfExists();
 
-        String xml = oddsApiService.fetchSportsXml();
+        if (xml == null) {
+            oddsApiService.saveSportsXmlToFile();
+            xml = oddsApiService.loadLocalSportsXmlIfExists();
+        }
 
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         dbf.setNamespaceAware(true);
